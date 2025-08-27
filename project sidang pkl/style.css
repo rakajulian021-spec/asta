@@ -1,0 +1,203 @@
+ :root {
+     --primary-color: #dc2626;
+     --primary-hover: #b91c1c;
+     --secondary-color: #ea580c;
+     --text-dark: #1f2937;
+     --text-light: #6b7280;
+     --bg-light: #f9fafb;
+ }
+
+ * {
+     font-family: 'Inter', sans-serif;
+     box-sizing: border-box;
+     /* Added for consistent box model */
+ }
+
+ html {
+     scroll-behavior: smooth;
+     /* Ensures smooth scrolling even without JS */
+ }
+
+
+ body {
+     overflow-x: hidden;
+     /* Prevent horizontal scroll */
+ }
+
+ .hero-bg {
+     background: linear-gradient(135deg, rgba(220, 38, 38, 0.9), rgba(239, 68, 68, 0.8)),
+         url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+     background-size: cover;
+     background-position: center;
+     background-attachment: fixed;
+ }
+
+ .service-card {
+     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+     border: 1px solid transparent;
+ }
+
+ .service-card:hover {
+     transform: translateY(-8px);
+     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+     border-color: rgba(220, 38, 38, 0.1);
+ }
+
+ .gradient-text {
+     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+     -webkit-background-clip: text;
+     -webkit-text-fill-color: transparent;
+     background-clip: text;
+ }
+
+ .floating {
+     animation: float 3s ease-in-out infinite;
+ }
+
+ @keyframes float {
+
+     0%,
+     100% {
+         transform: translateY(0px);
+     }
+
+     50% {
+         transform: translateY(-10px);
+     }
+ }
+
+ .form-input {
+     transition: all 0.3s ease;
+     border: 1px solid #374151;
+ }
+
+ .form-input:focus {
+     outline: none;
+     border-color: var(--primary-color);
+     box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+ }
+
+ .loading-spinner {
+     border: 2px solid #f3f3f3;
+     border-top: 2px solid var(--primary-color);
+     border-radius: 50%;
+     width: 20px;
+     height: 20px;
+     animation: spin 1s linear infinite;
+ }
+
+ @keyframes spin {
+     0% {
+         transform: rotate(0deg);
+     }
+
+     100% {
+         transform: rotate(360deg);
+     }
+ }
+
+ .mobile-menu {
+     transform: translateX(-100%);
+     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+     backdrop-filter: blur(10px);
+ }
+
+ .mobile-menu.open {
+     transform: translateX(0);
+ }
+
+ .scroll-indicator {
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 4px;
+     background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+     transform: scaleX(0);
+     transform-origin: left;
+     transition: transform 0.3s ease;
+     z-index: 1000;
+ }
+
+ .stats-counter {
+     font-variant-numeric: tabular-nums;
+ }
+
+ .btn-primary {
+     background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+     transition: all 0.3s ease;
+     position: relative;
+     overflow: hidden;
+ }
+
+ .btn-primary::before {
+     content: '';
+     position: absolute;
+     top: 0;
+     left: -100%;
+     width: 100%;
+     height: 100%;
+     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+     transition: left 0.5s;
+ }
+
+ .btn-primary:hover::before {
+     left: 100%;
+ }
+
+ .parallax {
+     transform: translateZ(0);
+ }
+
+ .section-fade {
+     opacity: 0;
+     transform: translateY(30px);
+     transition: all 0.6s ease;
+ }
+
+ .section-fade.visible {
+     opacity: 1;
+     transform: translateY(0);
+ }
+
+ @media (max-width: 768px) {
+     .hero-bg {
+         background-attachment: scroll;
+     }
+ }
+
+ /* Improved accessibility */
+ .sr-only {
+     position: absolute;
+     width: 1px;
+     height: 1px;
+     padding: 0;
+     margin: -1px;
+     overflow: hidden;
+     clip: rect(0, 0, 0, 0);
+     white-space: nowrap;
+     border: 0;
+ }
+
+ /* Loading state improvements */
+ .skeleton {
+     background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+     background-size: 200% 100%;
+     animation: loading 1.5s infinite;
+ }
+
+ @keyframes loading {
+     0% {
+         background-position: 200% 0;
+     }
+
+     100% {
+         background-position: -200% 0;
+     }
+ }
+
+ /* Added for better form input styling on error */
+ .form-input.border-red-400 {
+     border-color: #ef4444;
+     /* Tailwind red-500 */
+ }
